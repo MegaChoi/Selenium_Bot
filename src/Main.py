@@ -1,17 +1,24 @@
 from Comment import Comment
+from Driver import Driver
 import threading
 import csv
+with open("src\\supply\\Targets.txt", "r") as f:
+    targets = f.readlines()
 
-# Attack = Comment("sonvuvu2020@gmail.com", "19001009Gbc%", targetURL)
-# Attack.lauch()
+for i in range(len(targets)):
+    #Create a driver object
+    d = Driver()
+    driver = d.CreatDriver()
+    #Multithreading bots
+    bot = Comment()
+    t = threading.Thread(target= bot.lauch, args=(driver,targets[i]))
+    t.start()
 
-# with open("src\\Targets.txt") as f:
-#     lines = f.readlines()
-# for line in lines:
-#     print(line.strip())
+    
 
 
-f = open("src\\Credentials.csv", "a",newline="")
-new = (2,3)
-writer = csv.writer(f)
-writer.writerow(new)
+
+
+
+
+
